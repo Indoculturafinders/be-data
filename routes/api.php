@@ -1,15 +1,16 @@
+
 <?php
 
-use App\Http\Controllers\Api\BahasaDaerahController;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\Tarian;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CulturesController;
 use App\Http\Controllers\Api\ProvincesController;
-use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\RumahAdatController;
+use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\UpacaraAdatController;
+use App\Http\Controllers\Api\BahasaDaerahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,8 @@ Route::get('provinces', [ProvincesController::class, 'index']);
 Route::get('provinces/{id}', [ProvincesController::class, 'show']);
 Route::post('provinces', [ProvincesController::class, 'store']);
 Route::put('provinces/{id}', [ProvincesController::class, 'update']);
+
+// Categories
+Route::get('categories', [CategoriesController::class, 'index']);
+Route::get('categories/{id}', [CategoriesController::class, 'show']);
+Route::post('categories', [CategoriesController::class, 'store']);
