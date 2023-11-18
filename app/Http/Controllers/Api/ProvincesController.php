@@ -35,7 +35,20 @@ class ProvincesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = Province::select('id', 'name')->find($id);
+        if ($data) {
+            return response()->json([
+                'status'=>true,
+                'message'=>'Data Ditemukan',
+                'provinces'=>$data,
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak ditemukan',
+                'provinces' => $data
+            ], 404);
+        }
     }
 
     /**
