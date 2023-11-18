@@ -21,7 +21,6 @@ class CategoriesController extends Controller
             'message' => 'Data ditemukan',
             'Categories' => $data
         ], 200);
-
     }
 
     /**
