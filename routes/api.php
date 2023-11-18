@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Provinces
 Route::get('provinces', [ProvincesController::class, 'index']);
 Route::get('provinces/{id}', [ProvincesController::class, 'show']);
 Route::post('provinces', [ProvincesController::class, 'store']);
