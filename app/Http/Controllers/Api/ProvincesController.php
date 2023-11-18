@@ -19,7 +19,7 @@ class ProvincesController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Data ditemukan',
-            'Categories' => $data
+            'provinces' => $data
         ], 200);
     }
 
