@@ -31,3 +31,4 @@ Route::put('provinces/{id}', [ProvincesController::class, 'update']);
 Route::get('categories', [CategoriesController::class, 'index']);
 Route::get('categories/{id}', [CategoriesController::class, 'show']);
 Route::post('categories', [CategoriesController::class, 'store']);
+Route::put('categories/{id}', [CategoriesControllers::class, 'update']);
