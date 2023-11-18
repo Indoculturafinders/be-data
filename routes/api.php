@@ -25,3 +25,5 @@ use App\Http\Controllers\Api\UpacaraAdatController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('provinces', [ProvincesController::class, 'index']);
