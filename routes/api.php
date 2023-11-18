@@ -3,7 +3,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\CulturesController;
 use App\Http\Controllers\Api\ProvincesController;
 use App\Http\Controllers\Api\CategoriesController;
 
