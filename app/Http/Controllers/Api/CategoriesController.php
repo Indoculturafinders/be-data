@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
 {
@@ -19,7 +21,7 @@ class CategoriesController extends Controller
             'message' => 'Data ditemukan',
             'Categories' => $data
         ], 200);
-        
+
     }
 
     /**
@@ -27,7 +29,29 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dataCategories = new Categorie;
+
+        $rules = [
+            'name' => 'required'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'status'=>false,
+                'massage'=>'Gagal memasukkan data',
+                'data'=>$validator->errors()
+            ], 400);
+        }
+
+        $dataCategories->name = $request->name;
+
+        $dataCategories->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Sukses memasukan data'
+        ],201);
     }
 
     /**
@@ -35,7 +59,20 @@ class CategoriesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = Categorie::select('id', 'name')->find($id);
+        if ($data) {
+            return response()->json([
+                'status'=>true,
+                'message'=>'Data Ditemukan',
+                'categories'=>$data,
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak ditemukan',
+                'categories' => $data
+            ], 404);
+        }
     }
 
     /**
