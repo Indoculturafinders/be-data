@@ -83,8 +83,8 @@ class ProvincesController extends Controller
 
         if (empty($dataProvinces)) {
             return response()->json([
-                'status' => false,kitemu
-                'message' => 'Data tidak dan'
+                'status' => false,
+                'message' => 'Data tidak ditemukan'
             ], 404);
         }
 
