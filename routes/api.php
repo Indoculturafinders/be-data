@@ -26,6 +26,7 @@ Route::get('provinces', [ProvincesController::class, 'index']);
 Route::get('provinces/{id}', [ProvincesController::class, 'show']);
 Route::post('provinces', [ProvincesController::class, 'store']);
 Route::put('provinces/{id}', [ProvincesController::class, 'update']);
+Route::delete('provinces/{id}', [ProvincesController::class, 'destroy']);
 
 // Categories
 Route::get('categories', [CategoriesController::class, 'index']);
