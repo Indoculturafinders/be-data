@@ -14,7 +14,17 @@ class CulturesController extends Controller
      */
     public function index()
     {
-        //
+        $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
+        ->join('categories', 'cultures.category_id', '=', 'categories.id')
+        ->select('cultures.id', 'cultures.province_id', 'provinces.name as province_name', 'cultures.category_id', 'categories.name as category_name', 'cultures.name', 'cultures.img', 'cultures.video', 'cultures.desc')
+        ->orderBy('cultures.id', 'asc')
+        ->get();
+
+return response()->json([
+'status' => true,
+'message' => 'Data ditemukan',
+'Cultures' => $data
+], 200);
     }
 
     /**
