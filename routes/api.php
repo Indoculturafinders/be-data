@@ -38,3 +38,4 @@ Route::delete('categories/{id}', [CategoriesController::class, 'destroy']);
 
 // Culture
 Route::get('cultures/{id}', [CulturesController::class, 'show']);
+Route::put('cultures/{id}', [CulturesController::class, 'update']);
