@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Culture;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class CulturesController extends Controller
 {
@@ -55,7 +56,47 @@ class CulturesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $rules = [
+            'province_id' => 'required',
+            'category_id' => 'required',
+            'name' => 'required',
+            'img' => 'required',
+            'video' => 'required',
+            'desc' => 'required',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Gagal memperbarui data',
+                'data' => $validator->errors(),
+            ], 400);
+        }
+
+        $dataCulture = Culture::find($id);
+
+        if (!$dataCulture) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak ditemukan',
+            ], 404);
+        }
+
+        $dataCulture->province_id = $request->province_id;
+        $dataCulture->category_id = $request->category_id;
+        $dataCulture->name = $request->name;
+        $dataCulture->img = $request->img;
+        $dataCulture->video = $request->video;
+        $dataCulture->desc = $request->desc;
+
+        $dataCulture->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Sukses memperbarui data',
+        ], 200);
     }
 
     /**
