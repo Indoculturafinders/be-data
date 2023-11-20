@@ -34,3 +34,6 @@ Route::get('categories/{id}', [CategoriesController::class, 'show']);
 Route::post('categories', [CategoriesController::class, 'store']);
 Route::put('categories/{id}', [CategoriesControllers::class, 'update']);
 Route::delete('categories/{id}', [CategoriesController::class, 'destroy']);
+
+// Culture
+Route::get('categories/{id}', [CategoriesController::class, 'show']);
