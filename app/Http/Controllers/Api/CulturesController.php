@@ -32,9 +32,41 @@ return response()->json([
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'province_id' => 'required',
+            'category_id' => 'required',
+            'name' => 'required',
+            'img' => 'required',
+            'video' => 'required',
+            'desc' => 'required'
+        ];
+    
+        $validator = Validator::make($request->all(), $rules);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Gagal memasukkan data',
+                'data' => $validator->errors()
+            ], 400);
+        }
+    
+        $dataCultures = new Culture;
+        $dataCultures->province_id = $request->province_id;
+        $dataCultures->category_id = $request->category_id;
+        $dataCultures->name = $request->name;
+        $dataCultures->img = $request->img;
+        $dataCultures->video = $request->video;
+        $dataCultures->desc = $request->desc;
+    
+        $dataCultures->save();
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'Sukses memasukkan data'
+        ], 201);
     }
-
+    
     /**
      * Display the specified resource.
      */
