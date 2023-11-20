@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProvincesController;
 use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\CulturesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,4 @@ Route::put('categories/{id}', [CategoriesControllers::class, 'update']);
 Route::delete('categories/{id}', [CategoriesController::class, 'destroy']);
 
 // Culture
-Route::get('categories/{id}', [CategoriesController::class, 'show']);
+Route::get('cultures/{id}', [CulturesController::class, 'show']);
