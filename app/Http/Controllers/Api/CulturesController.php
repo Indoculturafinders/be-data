@@ -146,6 +146,20 @@ return response()->json([
      */
     public function destroy(string $id)
     {
-        //
+        $dataCultures = Culture::find($id);
+
+        if (empty($dataCultures)) {
+            return response()->json([
+                'status' => false,
+                'message'=> 'Data tidak ditemukan',
+            ], 404);
+        }
+
+        $post = $dataCultures->delete();
+
+        return response()->json([
+            'status'=> true,
+            'message' => 'Sukses delete data'
+        ], 200);
     }
 }
