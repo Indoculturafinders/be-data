@@ -14,7 +14,7 @@ class Categorie extends Model
     protected $fillable = [
         'name',
         'img',
-        'desc'
+        'desc' 
     ];
 
     public function cultures(){
