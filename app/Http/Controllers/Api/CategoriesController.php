@@ -14,7 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $data = Categorie::select('id', 'name')->orderBy('id', 'asc')->get();
+        $data = Categorie::select('id', 'name', 'img', 'desc')->orderBy('id', 'asc')->get();
 
         return response()->json([
             'status' => true,
