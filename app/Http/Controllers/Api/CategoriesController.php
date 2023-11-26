@@ -26,12 +26,17 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         $dataCategories = new Categorie;
 
         $rules = [
-            'name' => 'required'
+            'name' => 'required',
+            'img' => 'required',
+            'desc' => 'required'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -44,6 +49,8 @@ class CategoriesController extends Controller
         }
 
         $dataCategories->name = $request->name;
+        $dataCategories->img = $request->img;
+        $dataCategories->desc = $request->desc;
 
         $dataCategories->save();
 
