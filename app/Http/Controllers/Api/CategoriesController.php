@@ -16,7 +16,7 @@ class CategoriesController extends Controller
     {
         $data = Categorie::select('id', 'name', 'img', 'desc')->orderBy('id', 'asc')->get();
 
-        return response()->json([
+        return response()->json([ 
             'status' => true,
             'message' => 'Data ditemukan',
             'Categories' => $data
