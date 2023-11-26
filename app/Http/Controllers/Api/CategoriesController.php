@@ -96,7 +96,9 @@ class CategoriesController extends Controller
         }
 
         $rules = [
-            'name' => 'required'
+            'name' => 'required',
+            'img' => 'required',
+            'desc' => 'required'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -109,6 +111,8 @@ class CategoriesController extends Controller
         }
 
         $dataCategories->name = $request->name;
+        $dataCategories->img = $request->img;
+        $dataCategories->desc = $request->desc;
 
         $dataCategories->save();
 
