@@ -13,6 +13,8 @@ class Categorie extends Model
     protected $primarykey = "id";
     protected $fillable = [
         'name',
+        'img',
+        'desc'
     ];
 
     public function cultures(){
