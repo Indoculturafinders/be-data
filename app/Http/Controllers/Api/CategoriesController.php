@@ -98,7 +98,7 @@ class CategoriesController extends Controller
         $rules = [
             'name' => 'required',
             'img' => 'required',
-            'desc' => 'required'
+            'desc' => 'required' 
         ];
 
         $validator = Validator::make($request->all(), $rules);
