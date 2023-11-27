@@ -71,58 +71,6 @@
             }
           }
         }
-      },
-      "post": {
-        "security": [
-          {
-            "TodoListAuth": []
-          }
-        ],
-        "tags": ["Cultures"],
-        "summary": "Create New Culture",
-        "description": "Create new culture",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateOrUpdateCulture"
-              },
-              "examples": {
-                "example1": {
-                  "value": {
-                    "province_id": 1,
-                    "category_id": 4,
-                    "name": "New Culture",
-                    "img": "https://example.com/image.jpg",
-                    "video": "https://www.youtube.com/embed/example",
-                    "desc": "Description of new culture"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success create culture",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessCreateOrUpdateCulture"
-                },
-                "examples": {
-                  "example1": {
-                    "value": {
-                      "status": true,
-                      "message": "Culture created successfully"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/cultures/{cultureId}": {
