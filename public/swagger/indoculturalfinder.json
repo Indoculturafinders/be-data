@@ -392,8 +392,8 @@
             }
           }
         }
-      },
-      "/provinces/{provinceId}": {
+    },
+    "/provinces/{provinceId}": {
         "get": {
           "tags": ["Provinces"],
           "summary": "Get Province by ID",
@@ -419,6 +419,549 @@
                         "province": {
                           "id": 1,
                           "name": "Jawa Barat"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/tarian": {
+        "get": {
+          "tags": ["Tarian"],
+          "summary": "Get All Tarian",
+          "description": "Get All Tarian data",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Success get all tarian",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetAllTarian"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "tarian": [
+                          {
+                            "id": 1,
+                            "province_id": 1,
+                            "province_name": "Jawa Barat",
+                            "category_id": 4,
+                            "category_name": "Tarian Adat",
+                            "name": "Tari Jaipong",
+                            "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
+                            "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
+                            "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                          },
+                          {
+                            "id": 2,
+                            "province_id": 1,
+                            "province_name": "Jawa Barat",
+                            "category_id": 7,
+                            "category_name": "Bahasa Daerah",
+                            "name": "Bahasa Sunda",
+                            "img": "https://awsimages.detik.net.id/community/media/visual/2023/01/13/kalimat-sapaan-dalam-bahasa-sunda_169.jpeg?w=650&q=80",
+                            "video": "https://www.youtube.com/embed/-9lf_rRXhaQ?si=GyaZiGShDpye1wz_",
+                            "desc": "Bahasa sunda merupakan bahasa khas jawa barat"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/tarian/{tarianId}": {
+        "get": {
+          "tags": ["Tarian"],
+          "summary": "Get Tarian by ID",
+          "description": "Get Tarian data by ID",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/TarianId"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get tarian by ID",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetTarianById"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "tarian": {
+                          "id": 1,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 4,
+                          "category_name": "Tarian Adat",
+                          "name": "Tari Jaipong",
+                          "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
+                          "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
+                          "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/tarian/search/name/{tarianName}": {
+        "get": {
+          "tags": ["Tarian"],
+          "summary": "Get Tarian by Category Name",
+          "description": "Get Tarian data by Category Name",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/TarianName"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get tarian by Category Name",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetTarianByCategoryName"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "tarian": {
+                          "id": 1,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 4,
+                          "category_name": "Tarian Adat",
+                          "name": "Tari Jaipong",
+                          "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
+                          "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
+                          "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/tarian/search/province/{provinceName}": {
+        "get": {
+          "tags": ["Tarian"],
+          "summary": "Get Tarian by Province",
+          "description": "Get Tarian data by Province",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/ProvinceName"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get tarian by Province",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetTarianByProvince"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "tarian": {
+                          "id": 1,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 4,
+                          "category_name": "Tarian Adat",
+                          "name": "Tari Jaipong",
+                          "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
+                          "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
+                          "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/upacara-adat": {
+        "get": {
+          "tags": ["Upacara Adat"],
+          "summary": "Get All Upacara Adat",
+          "description": "Get All Upacara Adat data",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Success get all upacara adat",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetAllUpacaraAdat"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "upacara_adat": [
+                          {
+                            "id": 1,
+                            "province_id": 1,
+                            "province_name": "Jawa Barat",
+                            "category_id": 5,
+                            "category_name": "Upacara Adat",
+                            "name": "Upacara Seren Taun",
+                            "img": "https://example.com/upacara-seren.jpg",
+                            "video": "https://www.youtube.com/embed/upacara-seren?si=example",
+                            "desc": "Upacara seren taun merupakan upacara adat di Jawa Barat"
+                          },
+                          {
+                            "id": 2,
+                            "province_id": 1,
+                            "province_name": "Jawa Barat",
+                            "category_id": 5,
+                            "category_name": "Upacara Adat",
+                            "name": "Upacara Sunduk Majeng",
+                            "img": "https://example.com/upacara-sunduk-majeng.jpg",
+                            "video": "https://www.youtube.com/embed/upacara-sunduk-majeng?si=example",
+                            "desc": "Upacara sunduk majeng adalah upacara adat di Jawa Barat yang melibatkan adat istiadat dalam perkawinan"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/upacara-adat/{upacaraAdatId}": {
+        "get": {
+          "tags": ["Upacara Adat"],
+          "summary": "Get Upacara Adat by ID",
+          "description": "Get Upacara Adat data by ID",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/UpacaraAdatId"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get upacara adat by ID",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetUpacaraAdatById"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "upacara_adat": {
+                          "id": 1,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 5,
+                          "category_name": "Upacara Adat",
+                          "name": "Upacara Seren Taun",
+                          "img": "https://example.com/upacara-seren.jpg",
+                          "video": "https://www.youtube.com/embed/upacara-seren?si=example",
+                          "desc": "Upacara seren taun merupakan upacara adat di Jawa Barat"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/upacara-adat/search/name/{upacaraAdatName}": {
+        "get": {
+          "tags": ["Upacara Adat"],
+          "summary": "Get Upacara Adat by Name",
+          "description": "Get Upacara Adat data by Name",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/UpacaraAdatName"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get upacara adat by Name",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetUpacaraAdatByName"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "upacara_adat": {
+                          "id": 1,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 5,
+                          "category_name": "Upacara Adat",
+                          "name": "Upacara Seren Taun",
+                          "img": "https://example.com/upacara-seren.jpg",
+                          "video": "https://www.youtube.com/embed/upacara-seren?si=example",
+                          "desc": "Upacara seren taun merupakan upacara adat di Jawa Barat"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/upacara-adat/search/province/{provinceName}": {
+        "get": {
+          "tags": ["Upacara Adat"],
+          "summary": "Get Upacara Adat by Province",
+          "description": "Get Upacara Adat data by Province",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/ProvinceName"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get upacara adat by Province",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetUpacaraAdatByProvince"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "upacara_adat": {
+                          "id": 1,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 5,
+                          "category_name": "Upacara Adat",
+                          "name": "Upacara Seren Taun",
+                          "img": "https://example.com/upacara-seren.jpg",
+                          "video": "https://www.youtube.com/embed/upacara-seren?si=example",
+                          "desc": "Upacara seren taun merupakan upacara adat di Jawa Barat"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/rumah-adat": {
+        "get": {
+          "tags": ["Rumah Adat"],
+          "summary": "Get All Rumah Adat",
+          "description": "Get All Rumah Adat data",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Success get all rumah adat",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetAllRumahAdat"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "rumah_adat": [
+                          {
+                            "id": 1,
+                            "province_id": 1,
+                            "province_name": "Jawa Barat",
+                            "category_id": 6,
+                            "category_name": "Rumah Adat",
+                            "name": "Rumah Badak",
+                            "img": "https://example.com/rumah-badak.jpg",
+                            "video": "https://www.youtube.com/embed/rumah-badak?si=example",
+                            "desc": "Rumah badak adalah rumah adat khas Jawa Barat yang memiliki keunikan arsitektur"
+                          },
+                          {
+                            "id": 2,
+                            "province_id": 1,
+                            "province_name": "Jawa Barat",
+                            "category_id": 6,
+                            "category_name": "Rumah Adat",
+                            "name": "Rumah Kujang",
+                            "img": "https://example.com/rumah-kujang.jpg",
+                            "video": "https://www.youtube.com/embed/rumah-kujang?si=example",
+                            "desc": "Rumah kujang adalah rumah adat yang melibatkan seni ukir khas Jawa Barat"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/rumah-adat/{rumahAdatId}": {
+        "get": {
+          "tags": ["Rumah Adat"],
+          "summary": "Get Rumah Adat by ID",
+          "description": "Get Rumah Adat data by ID",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/RumahAdatId"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get rumah adat by ID",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetRumahAdatById"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "rumah_adat": {
+                          "id": 1,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 6,
+                          "category_name": "Rumah Adat",
+                          "name": "Rumah Badak",
+                          "img": "https://example.com/rumah-badak.jpg",
+                          "video": "https://www.youtube.com/embed/rumah-badak?si=example",
+                          "desc": "Rumah badak adalah rumah adat khas Jawa Barat yang memiliki keunikan arsitektur"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/rumah-adat/search/name/{rumahAdatName}": {
+        "get": {
+          "tags": ["Rumah Adat"],
+          "summary": "Get Rumah Adat by Name",
+          "description": "Get Rumah Adat data by Name",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/RumahAdatName"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get rumah adat by Name",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetRumahAdatByName"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "rumah_adat": {
+                          "id": 1,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 6,
+                          "category_name": "Rumah Adat",
+                          "name": "Rumah Badak",
+                          "img": "https://example.com/rumah-badak.jpg",
+                          "video": "https://www.youtube.com/embed/rumah-badak?si=example",
+                          "desc": "Rumah badak adalah rumah adat khas Jawa Barat yang memiliki keunikan arsitektur"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/rumah-adat/search/province/{provinceName}": {
+        "get": {
+          "tags": ["Rumah Adat"],
+          "summary": "Get Rumah Adat by Province",
+          "description": "Get Rumah Adat data by Province",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/ProvinceName"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get rumah adat by Province",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetRumahAdatByProvince"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "rumah_adat": {
+                          "id": 1,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 6,
+                          "category_name": "Rumah Adat",
+                          "name": "Rumah Badak",
+                          "img": "https://example.com/rumah-badak.jpg",
+                          "video": "https://www.youtube.com/embed/rumah-badak?si=example",
+                          "desc": "Rumah badak adalah rumah adat khas Jawa Barat yang memiliki keunikan arsitektur"
                         }
                       }
                     }
@@ -472,9 +1015,129 @@
           "minLength": 1,
           "maxLength": 100
         }
+      },
+      "TarianId": {
+        "name": "tarianId",
+        "in": "path",
+        "required": true,
+        "description": "Tarian Id for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "TarianName": {
+        "name": "tarianName",
+        "in": "path",
+        "required": true,
+        "description": "Tarian Name for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "ProvinceName": {
+        "name": "provinceName",
+        "in": "path",
+        "required": true,
+        "description": "Province Name for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "UpacaraAdatId": {
+        "name": "upacaraAdatId",
+        "in": "path",
+        "required": true,
+        "description": "Upacara Adat Id for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "UpacaraAdatName": {
+        "name": "upacaraAdatName",
+        "in": "path",
+        "required": true,
+        "description": "Upacara Adat Name for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "ProvinceName2": {
+        "name": "provinceName",
+        "in": "path",
+        "required": true,
+        "description": "Province Name for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "RumahAdatId": {
+        "name": "rumahAdatId",
+        "in": "path",
+        "required": true,
+        "description": "Rumah Adat Id for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "RumahAdatName": {
+        "name": "rumahAdatName",
+        "in": "path",
+        "required": true,
+        "description": "Rumah Adat Name for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
       }
     },
     "schemas": {
+      "Culture": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "province_id": {
+                "type": "integer"
+              },
+              "province_name": {
+                "type": "string"
+              },
+              "category_id": {
+                "type": "integer"
+              },
+              "category_name": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "img": {
+                "type": "string"
+              },
+              "video": {
+                "type": "string"
+              },
+              "desc": {
+                "type": "string"
+              }
+            }
+      },
       "SuccessGetAllCultures": {
         "type": "object",
         "properties": {
@@ -500,38 +1163,6 @@
           },
           "category_id": {
             "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "img": {
-            "type": "string"
-          },
-          "video": {
-            "type": "string"
-          },
-          "desc": {
-            "type": "string"
-          }
-        }
-      },
-      "Culture": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "province_id": {
-            "type": "integer"
-          },
-          "province_name": {
-            "type": "string"
-          },
-          "category_id": {
-            "type": "integer"
-          },
-          "category_name": {
-            "type": "string"
           },
           "name": {
             "type": "string"
@@ -583,6 +1214,20 @@
           }
         }
       },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
       "SuccessGetAllCategories": {
         "type": "object",
         "properties": {
@@ -600,20 +1245,6 @@
           }
         }
       },
-      "Category": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          }
-        }
-      },
       "SuccessGetCategoryById": {
         "type": "object",
         "properties": {
@@ -625,6 +1256,17 @@
           },
           "category": {
             "$ref": "#/components/schemas/Category"
+          }
+        }
+      },
+      "Province": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -645,17 +1287,6 @@
           }
         }
       },
-      "Province": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
       "SuccessGetProvinceById": {
         "type": "object",
         "properties": {
@@ -667,6 +1298,279 @@
           },
           "province": {
             "$ref": "#/components/schemas/Province"
+          }
+        }
+      },
+      "Tarian": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "province_id": {
+            "type": "integer"
+          },
+          "province_name": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "integer"
+          },
+          "category_name": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "img": {
+            "type": "string"
+          },
+          "video": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessGetAllTarian": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "tarian": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tarian"
+            }
+          }
+        }
+      },
+      "SuccessGetTarianById": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "tarian": {
+            "$ref": "#/components/schemas/Tarian"
+          }
+        }
+      },
+      "SuccessGetTarianByCategoryName": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "tarian": {
+            "$ref": "#/components/schemas/Tarian"
+          }
+        }
+      },
+      "SuccessGetTarianByProvince": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "tarian": {
+            "$ref": "#/components/schemas/Tarian"
+          }
+        }
+      },
+      "UpacaraAdat": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "province_id": {
+            "type": "integer"
+          },
+          "province_name": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "integer"
+          },
+          "category_name": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "img": {
+            "type": "string"
+          },
+          "video": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessGetAllUpacaraAdat": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "upacara_adat": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpacaraAdat"
+            }
+          }
+        }
+      },
+      "SuccessGetUpacaraAdatById": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "upacara_adat": {
+            "$ref": "#/components/schemas/UpacaraAdat"
+          }
+        }
+      },
+      "SuccessGetUpacaraAdatByName": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "upacara_adat": {
+            "$ref": "#/components/schemas/UpacaraAdat"
+          }
+        }
+      },
+      "SuccessGetUpacaraAdatByProvince": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "upacara_adat": {
+            "$ref": "#/components/schemas/UpacaraAdat"
+          }
+        }
+      },
+      "SuccessGetAllRumahAdat": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "rumah_adat": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RumahAdat"
+            }
+          }
+        }
+      },
+      "SuccessGetRumahAdatById": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "rumah_adat": {
+            "$ref": "#/components/schemas/RumahAdat"
+          }
+        }
+      },
+      "SuccessGetRumahAdatByName": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "rumah_adat": {
+            "$ref": "#/components/schemas/RumahAdat"
+          }
+        }
+      },
+      "SuccessGetRumahAdatByProvince": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "rumah_adat": {
+            "$ref": "#/components/schemas/RumahAdat"
+          }
+        }
+      },
+      "RumahAdat": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "province_id": {
+            "type": "integer"
+          },
+          "province_name": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "integer"
+          },
+          "category_name": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "img": {
+            "type": "string"
+          },
+          "video": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
           }
         }
       }
