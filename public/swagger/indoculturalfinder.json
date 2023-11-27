@@ -115,63 +115,6 @@
           }
         }
       },
-      "put": {
-        "security": [
-          {
-            "TodoListAuth": []
-          }
-        ],
-        "tags": ["Cultures"],
-        "summary": "Update Culture by ID",
-        "description": "Update Culture data by ID",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/CultureId"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateOrUpdateCulture"
-              },
-              "examples": {
-                "example1": {
-                  "value": {
-                    "province_id": 1,
-                    "category_id": 4,
-                    "name": "Updated Culture",
-                    "img": "https://example.com/updated-image.jpg",
-                    "video": "https://www.youtube.com/embed/updated-example",
-                    "desc": "Updated description of culture"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success update culture by ID",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessCreateOrUpdateCulture"
-                },
-                "examples": {
-                  "example1": {
-                    "value": {
-                      "status": true,
-                      "message": "Culture updated successfully"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
       "delete": {
         "security": [
           {
