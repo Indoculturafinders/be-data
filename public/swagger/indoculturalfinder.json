@@ -114,59 +114,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "security": [
-          {
-            "TodoListAuth": []
-          }
-        ],
-        "tags": ["Cultures"],
-        "summary": "Delete Culture by ID",
-        "description": "Delete Culture data by ID",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/CultureId"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success delete culture by ID",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessDelete"
-                },
-                "examples": {
-                  "example1": {
-                    "value": {
-                      "status": true,
-                      "message": "Culture deleted successfully"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Failed delete culture by ID, not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessDelete"
-                },
-                "examples": {
-                  "example1": {
-                    "value": {
-                      "status": false,
-                      "message": "Culture not found"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/categories": {
