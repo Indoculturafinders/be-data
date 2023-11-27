@@ -1,0 +1,675 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Indoculturafinder RESTful API",
+    "description": "OpenAPI for Indoculturafinder RESTful API",
+    "version": "1",
+    "contact": {
+      "name": "Indoculturafinder - Admin",
+      "email": "echo.ilmanaqilaa2@gmail.com",
+      "url": "https://indoculturafinder.github.io/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://be.indoculturalfinder.my.id/api",
+      "description": "Indoculturafinder RESTful API Server"
+    }
+  ],
+  "externalDocs": {
+    "description": "Tim Capstone Project",
+    "url": "https://indoculturafinder.github.io/"
+  },
+  "paths": {
+    "/cultures": {
+      "get": {
+        "tags": ["Cultures"],
+        "summary": "Get All Cultures",
+        "description": "Get All Cultures data",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success get all cultures",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessGetAllCultures"
+                },
+                "examples": {
+                  "success": {
+                    "value": {
+                      "status": true,
+                      "message": "Data ditemukan",
+                      "cultures": [
+                        {
+                          "id": 1,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 4,
+                          "category_name": "Tarian Adat",
+                          "name": "Tari Jaipong",
+                          "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
+                          "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
+                          "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                        },
+                        {
+                          "id": 2,
+                          "province_id": 1,
+                          "province_name": "Jawa Barat",
+                          "category_id": 7,
+                          "category_name": "Bahasa Daerah",
+                          "name": "Bahasa Sunda",
+                          "img": "https://awsimages.detik.net.id/community/media/visual/2023/01/13/kalimat-sapaan-dalam-bahasa-sunda_169.jpeg?w=650&q=80",
+                          "video": "https://www.youtube.com/embed/-9lf_rRXhaQ?si=GyaZiGShDpye1wz_",
+                          "desc": "Bahasa sunda merupakan bahasa khas jawa barat"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "TodoListAuth": []
+          }
+        ],
+        "tags": ["Cultures"],
+        "summary": "Create New Culture",
+        "description": "Create new culture",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateCulture"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "province_id": 1,
+                    "category_id": 4,
+                    "name": "New Culture",
+                    "img": "https://example.com/image.jpg",
+                    "video": "https://www.youtube.com/embed/example",
+                    "desc": "Description of new culture"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success create culture",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessCreateOrUpdateCulture"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "status": true,
+                      "message": "Culture created successfully"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cultures/{cultureId}": {
+      "get": {
+        "tags": ["Cultures"],
+        "summary": "Get Culture by ID",
+        "description": "Get Culture data by ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CultureId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get culture by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessGetCultureById"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "status": true,
+                      "message": "Data ditemukan",
+                      "culture": {
+                        "id": 1,
+                        "province_id": 1,
+                        "province_name": "Jawa Barat",
+                        "category_id": 4,
+                        "category_name": "Tarian Adat",
+                        "name": "Tari Jaipong",
+                        "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
+                        "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
+                        "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "TodoListAuth": []
+          }
+        ],
+        "tags": ["Cultures"],
+        "summary": "Update Culture by ID",
+        "description": "Update Culture data by ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CultureId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateCulture"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "province_id": 1,
+                    "category_id": 4,
+                    "name": "Updated Culture",
+                    "img": "https://example.com/updated-image.jpg",
+                    "video": "https://www.youtube.com/embed/updated-example",
+                    "desc": "Updated description of culture"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success update culture by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessCreateOrUpdateCulture"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "status": true,
+                      "message": "Culture updated successfully"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "TodoListAuth": []
+          }
+        ],
+        "tags": ["Cultures"],
+        "summary": "Delete Culture by ID",
+        "description": "Delete Culture data by ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CultureId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete culture by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessDelete"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "status": true,
+                      "message": "Culture deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed delete culture by ID, not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessDelete"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "status": false,
+                      "message": "Culture not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+        "get": {
+          "tags": ["Categories"],
+          "summary": "Get All Categories",
+          "description": "Get All Categories data",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Success get all categories",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetAllCategories"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "categories": [
+                          {
+                            "id": 1,
+                            "name": "Category 1",
+                            "description": "Description of Category 1"
+                          },
+                          {
+                            "id": 2,
+                            "name": "Category 2",
+                            "description": "Description of Category 2"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/categories/{categoryId}": {
+        "get": {
+          "tags": ["Categories"],
+          "summary": "Get Category by ID",
+          "description": "Get Category data by ID",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/CategoryId"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get category by ID",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetCategoryById"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "category": {
+                          "id": 1,
+                          "name": "Category 1",
+                          "description": "Description of Category 1"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/provinces": {
+        "get": {
+          "tags": ["Provinces"],
+          "summary": "Get All Provinces",
+          "description": "Get All Provinces data",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Success get all provinces",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetAllProvinces"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "provinces": [
+                          {
+                            "id": 1,
+                            "name": "Jawa Barat"
+                          },
+                          {
+                            "id": 2,
+                            "name": "Jawa Timur"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/provinces/{provinceId}": {
+        "get": {
+          "tags": ["Provinces"],
+          "summary": "Get Province by ID",
+          "description": "Get Province data by ID",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/ProvinceId"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success get province by ID",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetProvinceById"
+                  },
+                  "examples": {
+                    "success": {
+                      "value": {
+                        "status": true,
+                        "message": "Data ditemukan",
+                        "province": {
+                          "id": 1,
+                          "name": "Jawa Barat"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  },
+  "components": {
+    "securitySchemes": {
+      "TodoListAuth": {
+        "description": "Authentication for Indoculturafinder RESTful API",
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY"
+      }
+    },
+    "parameters": {
+      "CultureId": {
+        "name": "cultureId",
+        "in": "path",
+        "required": true,
+        "description": "Culture Id for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "CategoryId": {
+        "name": "categoryId",
+        "in": "path",
+        "required": true,
+        "description": "Category Id for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "ProvinceId": {
+        "name": "provinceId",
+        "in": "path",
+        "required": true,
+        "description": "Province Id for operation",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      }
+    },
+    "schemas": {
+      "SuccessGetAllCultures": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "cultures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Culture"
+            }
+          }
+        }
+      },
+      "CreateOrUpdateCulture": {
+        "type": "object",
+        "properties": {
+          "province_id": {
+            "type": "integer"
+          },
+          "category_id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "img": {
+            "type": "string"
+          },
+          "video": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          }
+        }
+      },
+      "Culture": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "province_id": {
+            "type": "integer"
+          },
+          "province_name": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "integer"
+          },
+          "category_name": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "img": {
+            "type": "string"
+          },
+          "video": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessGetCultureById": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "culture": {
+            "$ref": "#/components/schemas/Culture"
+          }
+        }
+      },
+      "SuccessCreateOrUpdateCulture": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessDelete": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessGetAllCategories": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category"
+            }
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessGetCategoryById": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          }
+        }
+      },
+      "SuccessGetAllProvinces": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "provinces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Province"
+            }
+          }
+        }
+      },
+      "Province": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessGetProvinceById": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "province": {
+            "$ref": "#/components/schemas/Province"
+          }
+        }
+      }
+    }
+  }
+}
