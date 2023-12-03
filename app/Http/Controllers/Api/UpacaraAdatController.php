@@ -24,7 +24,7 @@ class UpacaraAdatController extends Controller
         'status' => true,
         'message' => 'Data ditemukan',
         'result' => $data
-    ], 200);
+    ], 200); 
     }
 
     /**
