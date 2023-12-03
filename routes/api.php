@@ -57,7 +57,7 @@ Route::get('baju-adat/search/name/{name}', [BajuAdatController::class, 'searchBy
 Route::get('baju-adat/search/province/{name}', [BajuAdatController::class, 'searchByProvince']);
 
 // Upacara Adat
-Route::get('upacara-adat', [UpacaraAdatController::class, 'index']); 
+Route::get('upacara-adat', [UpacaraAdatController::class, 'index']);  
 
 // Tarian
 Route::get('tarian', [Tarian::class, 'index']);
