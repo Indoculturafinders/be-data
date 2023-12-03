@@ -58,3 +58,5 @@ Route::get('baju-adat/search/province/{name}', [BajuAdatController::class, 'sear
 
 // Upacara Adat
 Route::get('upacara-adat', [UpacaraAdatController::class, 'index']); 
+
+// Tarian
