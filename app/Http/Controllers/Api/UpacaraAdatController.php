@@ -11,7 +11,7 @@ class UpacaraAdatController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() 
+    public function index()  
     {
     $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
         ->join('categories', 'cultures.category_id', '=', 'categories.id')
