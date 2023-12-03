@@ -51,3 +51,6 @@ Route::get('rumah-adat/search/name/{name}', [RumahAdatController::class, 'search
 Route::get('rumah-adat/search/province/{name}', [RumahAdatController::class, 'searchByProvince']);
 
 // Baju Adat
+
+// Upacara Adat
+Route::get('upacara-adat', [UpacaraAdatController::class, 'index']);
