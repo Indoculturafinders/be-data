@@ -49,3 +49,5 @@ Route::get('rumah-adat', [RumahAdatController::class, 'index']);
 Route::get('rumah-adat/{id}', [RumahAdatController::class, 'show']);
 Route::get('rumah-adat/search/name/{name}', [RumahAdatController::class, 'searchByName']);
 Route::get('rumah-adat/search/province/{name}', [RumahAdatController::class, 'searchByProvince']);
+
+// Baju Adat
