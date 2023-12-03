@@ -55,4 +55,4 @@ Route::get('baju-adat', [BajuAdatController::class, 'index']);
 Route::get('baju-adat/{id}', [BajuAdatController::class, 'show']);
 
 // Upacara Adat
-Route::get('upacara-adat', [UpacaraAdatController::class, 'index']);
+Route::get('upacara-adat', [UpacaraAdatController::class, 'index']); 
