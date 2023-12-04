@@ -141,6 +141,6 @@ class CategoriesController extends Controller
         return response()->json([
             'status'=> true,
             'message' => 'Sukses delete data'
-        ], 200);
+        ], 200) ;
     }
 }
