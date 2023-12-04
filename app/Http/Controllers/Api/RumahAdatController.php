@@ -101,7 +101,7 @@ class RumahAdatController extends Controller
                 'status' => false,
                 'message' => 'Data tidak ditemukan',
                 'cultures' => $data,
-            ], 404);
+            ], 404) ;
         }
     }
 }
