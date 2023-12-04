@@ -61,3 +61,4 @@ Route::get('upacara-adat', [UpacaraAdatController::class, 'index']);
 
 // Tarian
 Route::get('tarian', [Tarian::class, 'index']);
+Route::get('tarian/{id}', [Tarian::class, 'show']);
