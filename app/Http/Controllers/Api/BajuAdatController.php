@@ -27,9 +27,6 @@ class BajuAdatController extends Controller
     ], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
