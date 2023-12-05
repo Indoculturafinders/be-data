@@ -42,7 +42,7 @@ Route::get('cultures', [CulturesController::class, 'index']);
 Route::get('cultures/{id}', [CulturesController::class, 'show']) ;
 Route::get('cultures/search/{name}', [CulturesController::class, 'searchByProvince']);
 Route::put('cultures/{id}', [CulturesController::class, 'update']);
-Route::delete('cultures/{id}', [CulturesController::class, 'destroy']);
+Route::delete('cultures/{id}', [CulturesController::class, 'destroy']) ;
 
 // Rumah Adat
 Route::get('rumah-adat', [RumahAdatController::class, 'index']);
