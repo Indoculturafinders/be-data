@@ -1,24 +1,24 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Indoculturafinder RESTful API",
-    "description": "OpenAPI for Indoculturafinder RESTful API",
+    "title": "Indoculturalfinder RESTful API",
+    "description": "OpenAPI for Indoculturalfinder RESTful API",
     "version": "1",
     "contact": {
-      "name": "Indoculturafinder - Admin",
+      "name": "Indoculturalfinder - Admin",
       "email": "echo.ilmanaqilaa2@gmail.com",
-      "url": "https://indoculturafinder.github.io/"
+      "url": "https://www.linkedin.com/in/muhammad-ilman-aqilaa-0132b9203/"
     }
   },
   "servers": [
     {
       "url": "https://be.indoculturalfinder.my.id/api",
-      "description": "Indoculturafinder RESTful API Server"
+      "description": "Indoculturalfinder RESTful API Server"
     }
   ],
   "externalDocs": {
-    "description": "Tim Capstone Project",
-    "url": "https://indoculturafinder.github.io/"
+    "description": "Website Us",
+    "url": "https://indoculturalfinder.github.io/"
   },
   "paths": {
     "/cultures": {
@@ -46,11 +46,11 @@
                           "province_id": 1,
                           "province_name": "Jawa Barat",
                           "category_id": 4,
-                          "category_name": "Tarian Adat",
+                          "category_name": "dance Adat",
                           "name": "Tari Jaipong",
                           "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
                           "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
-                          "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                          "desc": "Tari jaipong merupakan dance khas jawa barat"
                         },
                         {
                           "id": 2,
@@ -64,6 +64,58 @@
                           "desc": "Bahasa sunda merupakan bahasa khas jawa barat"
                         }
                       ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "IndoculturafinderAuth": []
+          }
+        ],
+        "tags": ["Cultures"],
+        "summary": "Create New Culture",
+        "description": "Create new culture",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateCulture"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "province_id": 1,
+                    "category_id": 4,
+                    "name": "New Culture",
+                    "img": "https://example.com/image.jpg",
+                    "video": "https://www.youtube.com/embed/example",
+                    "desc": "Description of new culture"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success create culture",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessCreateOrUpdateCulture"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "status": true,
+                      "message": "Culture created successfully"
                     }
                   }
                 }
@@ -101,12 +153,122 @@
                         "province_id": 1,
                         "province_name": "Jawa Barat",
                         "category_id": 4,
-                        "category_name": "Tarian Adat",
+                        "category_name": "dance Adat",
                         "name": "Tari Jaipong",
                         "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
                         "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
-                        "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                        "desc": "Tari jaipong merupakan dance khas jawa barat"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "IndoculturafinderAuth": []
+          }
+        ],
+        "tags": ["Cultures"],
+        "summary": "Update Culture by ID",
+        "description": "Update Culture data by ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CultureId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateCulture"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "province_id": 1,
+                    "category_id": 4,
+                    "name": "Updated Culture",
+                    "img": "https://example.com/updated-image.jpg",
+                    "video": "https://www.youtube.com/embed/updated-example",
+                    "desc": "Updated description of culture"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success update culture by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessCreateOrUpdateCulture"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "status": true,
+                      "message": "Culture updated successfully"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "IndoculturafinderAuth": []
+          }
+        ],
+        "tags": ["Cultures"],
+        "summary": "Delete Culture by ID",
+        "description": "Delete Culture data by ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CultureId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete culture by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessDelete"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "status": true,
+                      "message": "Culture deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed delete culture by ID, not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessDelete"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "status": false,
+                      "message": "Culture not found"
                     }
                   }
                 }
@@ -229,6 +391,38 @@
               }
             }
           }
+        },
+        "post": {
+          "security": [
+            {
+              "IndoculturafinderAuth": []
+            }
+          ],
+          "tags": ["Provinces"],
+          "summary": "Add a Province",
+          "description": "Add new province data",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Province"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Province successfully added",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Province"
+                  }
+                }
+              }
+            }
+          }
         }
     },
     "/provinces/{provinceId}": {
@@ -265,38 +459,102 @@
               }
             }
           }
-        }
-    },
-    "/tarian": {
-        "get": {
-          "tags": ["Tarian"],
-          "summary": "Get All Tarian",
-          "description": "Get All Tarian data",
-          "parameters": [],
+        },
+        "put": {
+          "security": [
+            {
+              "IndoculturafinderAuth": []
+            }
+          ],
+          "tags": ["Provinces"],
+          "summary": "Update a Province",
+          "description": "Update province data by ID",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/ProvinceId"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Province"
+                }
+              }
+            }
+          },
           "responses": {
             "200": {
-              "description": "Success get all tarian",
+              "description": "Province successfully updated",
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/SuccessGetAllTarian"
+                    "$ref": "#/components/schemas/Province"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "security": [
+            {
+              "IndoculturafinderAuth": []
+            }
+          ],
+          "tags": ["Provinces"],
+          "summary": "Delete a Province",
+          "description": "Delete province data by ID",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/ProvinceId"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Province successfully deleted",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Province"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/dance": {
+        "get": {
+          "tags": ["Dance"],
+          "summary": "Get All dance",
+          "description": "Get All dance data",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Success get all dance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGetAlldance"
                   },
                   "examples": {
                     "success": {
                       "value": {
                         "status": true,
                         "message": "Data ditemukan",
-                        "tarian": [
+                        "dance": [
                           {
                             "id": 1,
                             "province_id": 1,
                             "province_name": "Jawa Barat",
                             "category_id": 4,
-                            "category_name": "Tarian Adat",
+                            "category_name": "dance Adat",
                             "name": "Tari Jaipong",
                             "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
                             "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
-                            "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                            "desc": "Tari jaipong merupakan dance khas jawa barat"
                           },
                           {
                             "id": 2,
@@ -319,39 +577,39 @@
           }
         }
     },
-    "/tarian/{tarianId}": {
+    "/dance/{danceId}": {
         "get": {
-          "tags": ["Tarian"],
-          "summary": "Get Tarian by ID",
-          "description": "Get Tarian data by ID",
+          "tags": ["Dance"],
+          "summary": "Get dance by ID",
+          "description": "Get dance data by ID",
           "parameters": [
             {
-              "$ref": "#/components/parameters/TarianId"
+              "$ref": "#/components/parameters/danceId"
             }
           ],
           "responses": {
             "200": {
-              "description": "Success get tarian by ID",
+              "description": "Success get dance by ID",
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/SuccessGetTarianById"
+                    "$ref": "#/components/schemas/SuccessGetdanceById"
                   },
                   "examples": {
                     "success": {
                       "value": {
                         "status": true,
                         "message": "Data ditemukan",
-                        "tarian": {
+                        "dance": {
                           "id": 1,
                           "province_id": 1,
                           "province_name": "Jawa Barat",
                           "category_id": 4,
-                          "category_name": "Tarian Adat",
+                          "category_name": "dance Adat",
                           "name": "Tari Jaipong",
                           "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
                           "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
-                          "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                          "desc": "Tari jaipong merupakan dance khas jawa barat"
                         }
                       }
                     }
@@ -362,39 +620,39 @@
           }
         }
     },
-    "/tarian/search/name/{tarianName}": {
+    "/dance/search/name/{danceName}": {
         "get": {
-          "tags": ["Tarian"],
-          "summary": "Get Tarian by Category Name",
-          "description": "Get Tarian data by Category Name",
+          "tags": ["Dance"],
+          "summary": "Get dance by Category Name",
+          "description": "Get dance data by Category Name",
           "parameters": [
             {
-              "$ref": "#/components/parameters/TarianName"
+              "$ref": "#/components/parameters/danceName"
             }
           ],
           "responses": {
             "200": {
-              "description": "Success get tarian by Category Name",
+              "description": "Success get dance by Category Name",
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/SuccessGetTarianByCategoryName"
+                    "$ref": "#/components/schemas/SuccessGetdanceByCategoryName"
                   },
                   "examples": {
                     "success": {
                       "value": {
                         "status": true,
                         "message": "Data ditemukan",
-                        "tarian": {
+                        "dance": {
                           "id": 1,
                           "province_id": 1,
                           "province_name": "Jawa Barat",
                           "category_id": 4,
-                          "category_name": "Tarian Adat",
+                          "category_name": "dance Adat",
                           "name": "Tari Jaipong",
                           "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
                           "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
-                          "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                          "desc": "Tari jaipong merupakan dance khas jawa barat"
                         }
                       }
                     }
@@ -405,11 +663,11 @@
           }
         }
     },
-    "/tarian/search/province/{provinceName}": {
+    "/dance/search/province/{provinceName}": {
         "get": {
-          "tags": ["Tarian"],
-          "summary": "Get Tarian by Province",
-          "description": "Get Tarian data by Province",
+          "tags": ["Dance"],
+          "summary": "Get dance by Province",
+          "description": "Get dance data by Province",
           "parameters": [
             {
               "$ref": "#/components/parameters/ProvinceName"
@@ -417,27 +675,27 @@
           ],
           "responses": {
             "200": {
-              "description": "Success get tarian by Province",
+              "description": "Success get dance by Province",
               "content": {
                 "application/json": {
                   "schema": {
-                    "$ref": "#/components/schemas/SuccessGetTarianByProvince"
+                    "$ref": "#/components/schemas/SuccessGetdanceByProvince"
                   },
                   "examples": {
                     "success": {
                       "value": {
                         "status": true,
                         "message": "Data ditemukan",
-                        "tarian": {
+                        "dance": {
                           "id": 1,
                           "province_id": 1,
                           "province_name": "Jawa Barat",
                           "category_id": 4,
-                          "category_name": "Tarian Adat",
+                          "category_name": "dance Adat",
                           "name": "Tari Jaipong",
                           "img": "https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2021/09/29212602/tari-jaipong.jpg",
                           "video": "https://www.youtube.com/embed/4EOeWTB5t7U?si=bw9LoBJqYWd33u-x",
-                          "desc": "Tari jaipong merupakan tarian khas jawa barat"
+                          "desc": "Tari jaipong merupakan dance khas jawa barat"
                         }
                       }
                     }
@@ -448,11 +706,11 @@
           }
         }
     },
-    "/upacara-adat": {
+    "/traditional-ceremonies": {
         "get": {
-          "tags": ["Upacara Adat"],
-          "summary": "Get All Upacara Adat",
-          "description": "Get All Upacara Adat data",
+          "tags": ["Traditional Ceremonies"],
+          "summary": "Get All Traditional Ceremonies",
+          "description": "Get All Traditional Ceremonies data",
           "parameters": [],
           "responses": {
             "200": {
@@ -473,7 +731,7 @@
                             "province_id": 1,
                             "province_name": "Jawa Barat",
                             "category_id": 5,
-                            "category_name": "Upacara Adat",
+                            "category_name": "Traditional Ceremonies",
                             "name": "Upacara Seren Taun",
                             "img": "https://example.com/upacara-seren.jpg",
                             "video": "https://www.youtube.com/embed/upacara-seren?si=example",
@@ -484,7 +742,7 @@
                             "province_id": 1,
                             "province_name": "Jawa Barat",
                             "category_id": 5,
-                            "category_name": "Upacara Adat",
+                            "category_name": "Traditional Ceremonies",
                             "name": "Upacara Sunduk Majeng",
                             "img": "https://example.com/upacara-sunduk-majeng.jpg",
                             "video": "https://www.youtube.com/embed/upacara-sunduk-majeng?si=example",
@@ -500,14 +758,14 @@
           }
         }
     },
-    "/upacara-adat/{upacaraAdatId}": {
+    "/traditional-ceremonies/{traditionalCeremoniesId}": {
         "get": {
-          "tags": ["Upacara Adat"],
-          "summary": "Get Upacara Adat by ID",
-          "description": "Get Upacara Adat data by ID",
+          "tags": ["Traditional Ceremonies"],
+          "summary": "Get Traditional Ceremonies by ID",
+          "description": "Get Traditional Ceremonies data by ID",
           "parameters": [
             {
-              "$ref": "#/components/parameters/UpacaraAdatId"
+              "$ref": "#/components/parameters/traditionalCeremoniesId"
             }
           ],
           "responses": {
@@ -528,7 +786,7 @@
                           "province_id": 1,
                           "province_name": "Jawa Barat",
                           "category_id": 5,
-                          "category_name": "Upacara Adat",
+                          "category_name": "Traditional Ceremonies",
                           "name": "Upacara Seren Taun",
                           "img": "https://example.com/upacara-seren.jpg",
                           "video": "https://www.youtube.com/embed/upacara-seren?si=example",
@@ -543,14 +801,14 @@
           }
         }
     },
-    "/upacara-adat/search/name/{upacaraAdatName}": {
+    "/traditional-ceremonies/search/name/{traditionalCeremoniesName}": {
         "get": {
-          "tags": ["Upacara Adat"],
-          "summary": "Get Upacara Adat by Name",
-          "description": "Get Upacara Adat data by Name",
+          "tags": ["Traditional Ceremonies"],
+          "summary": "Get Traditional Ceremonies by Name",
+          "description": "Get Traditional Ceremonies data by Name",
           "parameters": [
             {
-              "$ref": "#/components/parameters/UpacaraAdatName"
+              "$ref": "#/components/parameters/traditionalCeremoniesName"
             }
           ],
           "responses": {
@@ -571,7 +829,7 @@
                           "province_id": 1,
                           "province_name": "Jawa Barat",
                           "category_id": 5,
-                          "category_name": "Upacara Adat",
+                          "category_name": "Traditional Ceremonies",
                           "name": "Upacara Seren Taun",
                           "img": "https://example.com/upacara-seren.jpg",
                           "video": "https://www.youtube.com/embed/upacara-seren?si=example",
@@ -586,11 +844,11 @@
           }
         }
     },
-    "/upacara-adat/search/province/{provinceName}": {
+    "/traditional-ceremonies/search/province/{provinceName}": {
         "get": {
-          "tags": ["Upacara Adat"],
-          "summary": "Get Upacara Adat by Province",
-          "description": "Get Upacara Adat data by Province",
+          "tags": ["Traditional Ceremonies"],
+          "summary": "Get Traditional Ceremonies by Province",
+          "description": "Get Traditional Ceremonies data by Province",
           "parameters": [
             {
               "$ref": "#/components/parameters/ProvinceName"
@@ -614,7 +872,7 @@
                           "province_id": 1,
                           "province_name": "Jawa Barat",
                           "category_id": 5,
-                          "category_name": "Upacara Adat",
+                          "category_name": "Traditional Ceremonies",
                           "name": "Upacara Seren Taun",
                           "img": "https://example.com/upacara-seren.jpg",
                           "video": "https://www.youtube.com/embed/upacara-seren?si=example",
@@ -629,11 +887,11 @@
           }
         }
     },
-    "/rumah-adat": {
+    "/traditional-house": {
         "get": {
-          "tags": ["Rumah Adat"],
-          "summary": "Get All Rumah Adat",
-          "description": "Get All Rumah Adat data",
+          "tags": ["Traditional House"],
+          "summary": "Get All Traditional House",
+          "description": "Get All Traditional House data",
           "parameters": [],
           "responses": {
             "200": {
@@ -654,7 +912,7 @@
                             "province_id": 1,
                             "province_name": "Jawa Barat",
                             "category_id": 6,
-                            "category_name": "Rumah Adat",
+                            "category_name": "Traditional House",
                             "name": "Rumah Badak",
                             "img": "https://example.com/rumah-badak.jpg",
                             "video": "https://www.youtube.com/embed/rumah-badak?si=example",
@@ -665,7 +923,7 @@
                             "province_id": 1,
                             "province_name": "Jawa Barat",
                             "category_id": 6,
-                            "category_name": "Rumah Adat",
+                            "category_name": "Traditional House",
                             "name": "Rumah Kujang",
                             "img": "https://example.com/rumah-kujang.jpg",
                             "video": "https://www.youtube.com/embed/rumah-kujang?si=example",
@@ -681,14 +939,14 @@
           }
         }
       },
-      "/rumah-adat/{rumahAdatId}": {
+      "/traditional-house/{traditionalHousesId}": {
         "get": {
-          "tags": ["Rumah Adat"],
-          "summary": "Get Rumah Adat by ID",
-          "description": "Get Rumah Adat data by ID",
+          "tags": ["Traditional House"],
+          "summary": "Get Traditional House by ID",
+          "description": "Get Traditional House data by ID",
           "parameters": [
             {
-              "$ref": "#/components/parameters/RumahAdatId"
+              "$ref": "#/components/parameters/traditionalHousesId"
             }
           ],
           "responses": {
@@ -709,7 +967,7 @@
                           "province_id": 1,
                           "province_name": "Jawa Barat",
                           "category_id": 6,
-                          "category_name": "Rumah Adat",
+                          "category_name": "Traditional House",
                           "name": "Rumah Badak",
                           "img": "https://example.com/rumah-badak.jpg",
                           "video": "https://www.youtube.com/embed/rumah-badak?si=example",
@@ -724,14 +982,14 @@
           }
         }
       },
-      "/rumah-adat/search/name/{rumahAdatName}": {
+      "/traditional-house/search/name/{traditionalHousesName}": {
         "get": {
-          "tags": ["Rumah Adat"],
-          "summary": "Get Rumah Adat by Name",
-          "description": "Get Rumah Adat data by Name",
+          "tags": ["Traditional House"],
+          "summary": "Get Traditional House by Name",
+          "description": "Get Traditional House data by Name",
           "parameters": [
             {
-              "$ref": "#/components/parameters/RumahAdatName"
+              "$ref": "#/components/parameters/traditionalHousesName"
             }
           ],
           "responses": {
@@ -752,7 +1010,7 @@
                           "province_id": 1,
                           "province_name": "Jawa Barat",
                           "category_id": 6,
-                          "category_name": "Rumah Adat",
+                          "category_name": "Traditional House",
                           "name": "Rumah Badak",
                           "img": "https://example.com/rumah-badak.jpg",
                           "video": "https://www.youtube.com/embed/rumah-badak?si=example",
@@ -767,11 +1025,11 @@
           }
         }
       },
-      "/rumah-adat/search/province/{provinceName}": {
+      "/traditional-house/search/province/{provinceName}": {
         "get": {
-          "tags": ["Rumah Adat"],
-          "summary": "Get Rumah Adat by Province",
-          "description": "Get Rumah Adat data by Province",
+          "tags": ["Traditional House"],
+          "summary": "Get Traditional House by Province",
+          "description": "Get Traditional House data by Province",
           "parameters": [
             {
               "$ref": "#/components/parameters/ProvinceName"
@@ -795,7 +1053,7 @@
                           "province_id": 1,
                           "province_name": "Jawa Barat",
                           "category_id": 6,
-                          "category_name": "Rumah Adat",
+                          "category_name": "Traditional House",
                           "name": "Rumah Badak",
                           "img": "https://example.com/rumah-badak.jpg",
                           "video": "https://www.youtube.com/embed/rumah-badak?si=example",
@@ -813,7 +1071,7 @@
   },
   "components": {
     "securitySchemes": {
-      "TodoListAuth": {
+      "IndoculturafinderAuth": {
         "description": "Authentication for Indoculturafinder RESTful API",
         "type": "apiKey",
         "in": "header",
@@ -854,22 +1112,22 @@
           "maxLength": 100
         }
       },
-      "TarianId": {
-        "name": "tarianId",
+      "danceId": {
+        "name": "danceId",
         "in": "path",
         "required": true,
-        "description": "Tarian Id for operation",
+        "description": "dance Id for operation",
         "schema": {
           "type": "string",
           "minLength": 1,
           "maxLength": 100
         }
       },
-      "TarianName": {
-        "name": "tarianName",
+      "danceName": {
+        "name": "danceName",
         "in": "path",
         "required": true,
-        "description": "Tarian Name for operation",
+        "description": "dance Name for operation",
         "schema": {
           "type": "string",
           "minLength": 1,
@@ -887,22 +1145,22 @@
           "maxLength": 100
         }
       },
-      "UpacaraAdatId": {
-        "name": "upacaraAdatId",
+      "traditionalCeremoniesId": {
+        "name": "traditionalCeremoniesId",
         "in": "path",
         "required": true,
-        "description": "Upacara Adat Id for operation",
+        "description": "Traditional Ceremonies Id for operation",
         "schema": {
           "type": "string",
           "minLength": 1,
           "maxLength": 100
         }
       },
-      "UpacaraAdatName": {
-        "name": "upacaraAdatName",
+      "traditionalCeremoniesName": {
+        "name": "traditionalCeremoniesName",
         "in": "path",
         "required": true,
-        "description": "Upacara Adat Name for operation",
+        "description": "Traditional Ceremonies Name for operation",
         "schema": {
           "type": "string",
           "minLength": 1,
@@ -920,22 +1178,22 @@
           "maxLength": 100
         }
       },
-      "RumahAdatId": {
-        "name": "rumahAdatId",
+      "traditionalHousesId": {
+        "name": "traditionalHousesId",
         "in": "path",
         "required": true,
-        "description": "Rumah Adat Id for operation",
+        "description": "Traditional House Id for operation",
         "schema": {
           "type": "string",
           "minLength": 1,
           "maxLength": 100
         }
       },
-      "RumahAdatName": {
-        "name": "rumahAdatName",
+      "traditionalHousesName": {
+        "name": "traditionalHousesName",
         "in": "path",
         "required": true,
-        "description": "Rumah Adat Name for operation",
+        "description": "Traditional House Name for operation",
         "schema": {
           "type": "string",
           "minLength": 1,
@@ -1139,7 +1397,7 @@
           }
         }
       },
-      "Tarian": {
+      "dance": {
         "type": "object",
         "properties": {
           "id": {
@@ -1171,7 +1429,7 @@
           }
         }
       },
-      "SuccessGetAllTarian": {
+      "SuccessGetAlldance": {
         "type": "object",
         "properties": {
           "status": {
@@ -1180,15 +1438,15 @@
           "message": {
             "type": "string"
           },
-          "tarian": {
+          "dance": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Tarian"
+              "$ref": "#/components/schemas/dance"
             }
           }
         }
       },
-      "SuccessGetTarianById": {
+      "SuccessGetdanceById": {
         "type": "object",
         "properties": {
           "status": {
@@ -1197,12 +1455,12 @@
           "message": {
             "type": "string"
           },
-          "tarian": {
-            "$ref": "#/components/schemas/Tarian"
+          "dance": {
+            "$ref": "#/components/schemas/dance"
           }
         }
       },
-      "SuccessGetTarianByCategoryName": {
+      "SuccessGetdanceByCategoryName": {
         "type": "object",
         "properties": {
           "status": {
@@ -1211,12 +1469,12 @@
           "message": {
             "type": "string"
           },
-          "tarian": {
-            "$ref": "#/components/schemas/Tarian"
+          "dance": {
+            "$ref": "#/components/schemas/dance"
           }
         }
       },
-      "SuccessGetTarianByProvince": {
+      "SuccessGetdanceByProvince": {
         "type": "object",
         "properties": {
           "status": {
@@ -1225,8 +1483,8 @@
           "message": {
             "type": "string"
           },
-          "tarian": {
-            "$ref": "#/components/schemas/Tarian"
+          "dance": {
+            "$ref": "#/components/schemas/dance"
           }
         }
       },
