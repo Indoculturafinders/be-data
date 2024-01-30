@@ -14,6 +14,10 @@
     {
       "url": "https://be.indoculturalfinder.my.id/api",
       "description": "Indoculturalfinder RESTful API Server"
+    },
+    {
+      "url": "https://asia-southeast2-project3-403605.cloudfunctions.net/",
+      "description": "Indoculturalfinder Auth"
     }
   ],
   "externalDocs": {
@@ -21,6 +25,35 @@
     "url": "https://indoculturalfinder.github.io/"
   },
   "paths": {
+    "/GCFPostHandler": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "User Login",
+        "description": "Endpoint for user login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success user login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/cultures": {
       "get": {
         "tags": ["Cultures"],
@@ -1202,6 +1235,26 @@
       }
     },
     "schemas": {
+      "LoginInput": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+
+      "LoginOutput": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
       "Culture": {
             "type": "object",
             "properties": {
