@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
@@ -16,7 +16,7 @@ class CategoriesController extends Controller
     {
         $data = Categorie::select('id', 'name', 'img', 'desc')->orderBy('id', 'asc')->get();
 
-        return response()->json([ 
+        return response()->json([
             'status' => true,
             'message' => 'Data ditemukan',
             'Categories' => $data
@@ -26,17 +26,12 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $dataCategories = new Categorie;
 
         $rules = [
-            'name' => 'required',
-            'img' => 'required',
-            'desc' => 'required' 
+            'name' => 'required'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -49,8 +44,6 @@ class CategoriesController extends Controller
         }
 
         $dataCategories->name = $request->name;
-        $dataCategories->img = $request->img;
-        $dataCategories->desc = $request->desc;
 
         $dataCategories->save();
 
@@ -96,9 +89,7 @@ class CategoriesController extends Controller
         }
 
         $rules = [
-            'name' => 'required',
-            'img' => 'required',
-            'desc' => 'required' 
+            'name' => 'required'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -111,8 +102,6 @@ class CategoriesController extends Controller
         }
 
         $dataCategories->name = $request->name;
-        $dataCategories->img = $request->img;
-        $dataCategories->desc = $request->desc;
 
         $dataCategories->save();
 
@@ -141,6 +130,6 @@ class CategoriesController extends Controller
         return response()->json([
             'status'=> true,
             'message' => 'Sukses delete data'
-        ], 200) ;
+        ], 200);
     }
 }

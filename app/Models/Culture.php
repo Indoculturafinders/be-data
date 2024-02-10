@@ -27,4 +27,5 @@ class Culture extends Model
     public function categories(){
         return $this->belongsTo(Categorie::class, 'category_id', 'id');
     }
+
 }

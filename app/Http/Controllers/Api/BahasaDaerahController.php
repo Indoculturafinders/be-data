@@ -6,7 +6,7 @@ use App\Models\Culture;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class MakananKhasController extends Controller
+class BahasaDaerahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class MakananKhasController extends Controller
     $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
         ->join('categories', 'cultures.category_id', '=', 'categories.id')
         ->select('cultures.id', 'cultures.province_id', 'provinces.name as province_name', 'cultures.category_id', 'categories.name as category_name', 'cultures.name', 'cultures.img', 'cultures.video', 'cultures.desc')
-        ->where('categories.name', '=', 'Makanan')
+        ->where('categories.name', '=', 'Bahasa Daerah')
         ->orderBy('cultures.id', 'asc')
         ->get();
 
@@ -36,7 +36,7 @@ class MakananKhasController extends Controller
             ->join('categories', 'cultures.category_id', '=', 'categories.id')
             ->select('cultures.id', 'cultures.province_id', 'provinces.name as province_name', 'cultures.category_id', 'categories.name as category_name', 'cultures.name', 'cultures.img', 'cultures.video', 'cultures.desc')
             ->where('cultures.id', '=', $id)
-            ->where('categories.name', '=', 'Makanan')
+            ->where('categories.name', '=', 'Bahasa Daerah')
             ->first();
 
         if ($data) {
@@ -60,7 +60,7 @@ class MakananKhasController extends Controller
         $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
             ->join('categories', 'cultures.category_id', '=', 'categories.id')
             ->select('cultures.id', 'cultures.province_id', 'provinces.name as province_name', 'cultures.category_id', 'categories.name as category_name', 'cultures.name', 'cultures.img', 'cultures.video', 'cultures.desc')
-            ->where('categories.name', '=', 'Makanan')
+            ->where('categories.name', '=', 'Bahasa Daerah')
             ->where('cultures.name', 'like', "%$name%")
             ->orderBy('cultures.id', 'asc')
             ->get();
@@ -85,7 +85,7 @@ class MakananKhasController extends Controller
         $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
             ->join('categories', 'cultures.category_id', '=', 'categories.id')
             ->select('cultures.id', 'cultures.province_id', 'provinces.name as province_name', 'cultures.category_id', 'categories.name as category_name', 'cultures.name', 'cultures.img', 'cultures.video', 'cultures.desc')
-            ->where('categories.name', '=', 'Makanan')
+            ->where('categories.name', '=', 'Bahasa Daerah')
             ->where('provinces.name', 'like', "%$name%")
             ->orderBy('cultures.id', 'asc')
             ->get();

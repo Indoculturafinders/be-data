@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Culture;
+use App\Models\Province;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -14,17 +16,17 @@ class CulturesController extends Controller
      */
     public function index()
     {
-        $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
-        ->join('categories', 'cultures.category_id', '=', 'categories.id')
-        ->select('cultures.id', 'cultures.province_id', 'provinces.name as province_name', 'cultures.category_id', 'categories.name as category_name', 'cultures.name', 'cultures.img', 'cultures.video', 'cultures.desc')
-        ->orderBy('cultures.id', 'asc')
-        ->get();
+    $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
+                  ->join('categories', 'cultures.category_id', '=', 'categories.id')
+                  ->select('cultures.id', 'cultures.province_id', 'provinces.name as province_name', 'cultures.category_id', 'categories.name as category_name', 'cultures.name', 'cultures.img', 'cultures.video', 'cultures.desc')
+                  ->orderBy('cultures.id', 'asc')
+                  ->get();
 
-return response()->json([
-'status' => true,
-'message' => 'Data ditemukan',
-'Cultures' => $data
-], 200);
+    return response()->json([
+        'status' => true,
+        'message' => 'Data ditemukan',
+        'Cultures' => $data
+    ], 200);
     }
 
     /**
@@ -67,30 +69,6 @@ return response()->json([
         ], 201);
     }
 
-    public function searchByProvince(string $name)
-    {
-        $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
-            ->join('categories', 'cultures.category_id', '=', 'categories.id')
-            ->select('cultures.id', 'cultures.province_id', 'provinces.name as province_name', 'cultures.category_id', 'categories.name as category_name', 'cultures.name', 'cultures.img', 'cultures.video', 'cultures.desc')
-            ->where('provinces.name', 'like', "%$name%")
-            ->orderBy('cultures.id', 'asc')
-            ->get();
-
-        if ($data->isNotEmpty()) {
-            return response()->json([
-                'status' => true,
-                'message' => 'Data Ditemukan',
-                'cultures' => $data,
-            ], 200);
-        } else {
-            return response()->json([
-                'status' => false,
-                'message' => 'Data tidak ditemukan',
-                'cultures' => $data,
-            ], 404);
-        }
-    }
-    
     /**
      * Display the specified resource.
      */
@@ -116,6 +94,31 @@ return response()->json([
             ], 404);
         }
     }
+
+    public function searchByProvince(string $name)
+    {
+        $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
+            ->join('categories', 'cultures.category_id', '=', 'categories.id')
+            ->select('cultures.id', 'cultures.province_id', 'provinces.name as province_name', 'cultures.category_id', 'categories.name as category_name', 'cultures.name', 'cultures.img', 'cultures.video', 'cultures.desc')
+            ->where('provinces.name', 'like', "%$name%")
+            ->orderBy('cultures.id', 'asc')
+            ->get();
+
+        if ($data->isNotEmpty()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Data Ditemukan',
+                'cultures' => $data,
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak ditemukan',
+                'cultures' => $data,
+            ], 404);
+        }
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -184,6 +187,46 @@ return response()->json([
         return response()->json([
             'status'=> true,
             'message' => 'Sukses delete data'
+        ], 200);
+    }
+    
+    public function getCultures(Request $request)
+    {
+        $category = $request->input('category');
+        $cultureName = $request->input('culture_name');
+        $provinceName = $request->input('province_name');
+    
+        $query = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
+                      ->join('categories', 'cultures.category_id', '=', 'categories.id')
+                      ->select('cultures.id', 'cultures.province_id', 'provinces.name as province_name', 'cultures.category_id', 'categories.name as category_name', 'cultures.name', 'cultures.img', 'cultures.video', 'cultures.desc')
+                      ->orderBy('cultures.id', 'asc');
+    
+        if ($category) {
+            $query->where('categories.name', 'like', '%' . $category . '%');
+        }
+    
+        if ($cultureName) {
+            $query->where('cultures.name', 'like', '%' . $cultureName . '%');
+        }
+    
+        if ($provinceName) {
+            $query->where('provinces.name', 'like', '%' . $provinceName . '%');
+        }
+    
+        $data = $query->get();
+    
+        if ($data->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak ditemukan',
+                'Cultures' => $data
+            ], 404);
+        }
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'Data ditemukan',
+            'Cultures' => $data
         ], 200);
     }
 }

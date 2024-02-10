@@ -11,7 +11,7 @@ class RumahAdatController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+        public function index()
     {
     $data = Culture::join('provinces', 'cultures.province_id', '=', 'provinces.id')
         ->join('categories', 'cultures.category_id', '=', 'categories.id')
@@ -24,7 +24,7 @@ class RumahAdatController extends Controller
         'status' => true,
         'message' => 'Data ditemukan',
         'result' => $data
-    ], 200); 
+    ], 200);
     }
 
     /**
@@ -101,7 +101,7 @@ class RumahAdatController extends Controller
                 'status' => false,
                 'message' => 'Data tidak ditemukan',
                 'cultures' => $data,
-            ], 404) ;
+            ], 404);
         }
     }
 }
